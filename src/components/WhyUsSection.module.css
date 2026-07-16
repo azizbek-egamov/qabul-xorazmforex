@@ -1,0 +1,123 @@
+.header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: var(--brand-card);
+  border: 1px solid var(--brand-border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--brand-red), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover {
+  border-color: rgba(225, 6, 0, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(225,6,0,0.08);
+  background: #141414;
+}
+
+.card:hover::before { opacity: 1; }
+
+.iconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(225, 6, 0, 0.08);
+  border: 1px solid rgba(225, 6, 0, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.card:hover .iconWrap {
+  background: rgba(225, 6, 0, 0.14);
+  border-color: rgba(225, 6, 0, 0.3);
+}
+
+.iconNum {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--brand-red);
+}
+
+.iconEmoji {
+  font-size: 18px;
+}
+
+.cardTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.cardDesc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.cardLine {
+  height: 2px;
+  background: linear-gradient(to right, var(--brand-red), transparent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .cardLine { transform: scaleX(1); }
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+}
+
+@media (max-width: 480px) {
+  .grid { grid-template-columns: 1fr; }
+}

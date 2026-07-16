@@ -1,0 +1,107 @@
+.ticker {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  height: 34px;
+  background: rgba(8, 8, 8, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.label {
+  flex-shrink: 0;
+  background: var(--brand-red);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  padding: 0 12px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.label::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 0;
+  bottom: 0;
+  width: 16px;
+  background: linear-gradient(to right, var(--brand-red), transparent);
+  z-index: 1;
+}
+
+.track {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.track::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background: linear-gradient(to right, transparent, var(--brand-dark));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.scroll {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: tickerScroll 40s linear infinite;
+  width: max-content;
+}
+
+.scroll:hover {
+  animation-play-state: paused;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px;
+}
+
+.pair {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Courier New', monospace;
+}
+
+.price {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Courier New', monospace;
+}
+
+.change {
+  font-size: 9px;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.03em;
+}
+
+.up { color: #34d399; }
+.down { color: var(--brand-red); }
+
+.dot {
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 12px;
+}

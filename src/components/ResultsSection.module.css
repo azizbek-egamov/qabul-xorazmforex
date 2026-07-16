@@ -1,0 +1,330 @@
+.topRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  max-width: 260px;
+  text-align: right;
+  line-height: 1.6;
+}
+
+/* Desktop grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: var(--brand-card);
+  border: 1px solid var(--brand-border);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--brand-red), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-3px); }
+.card:hover::after { opacity: 1; }
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.status {
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-family: 'Courier New', monospace;
+}
+
+.badge {
+  font-size: 9px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: 'Courier New', monospace;
+}
+
+.badgeGreen { background: rgba(52,211,153,0.1); color: #34d399; border: 1px solid rgba(52,211,153,0.2); }
+.badgeRed { background: rgba(225,6,0,0.1); color: var(--brand-red); border: 1px solid rgba(225,6,0,0.2); }
+
+.amount {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.amountLabel {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  margin-top: -8px;
+}
+
+.studentInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.studentName {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.8);
+}
+
+.studentDetail {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+}
+
+.quote {
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-left: 2px solid var(--brand-red);
+  padding: 12px 14px;
+  border-radius: 0 10px 10px 0;
+  line-height: 1.6;
+}
+
+/* Mobile carousel */
+.carousel { display: none; }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .grid { display: none; }
+  .carousel { display: block; overflow: hidden; position: relative; }
+  .note { text-align: left; max-width: 100%; }
+  .topRow { align-items: flex-start; }
+
+  .carouselTrack {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .carouselCard {
+    min-width: 100%;
+    background: var(--brand-card);
+    border: 1px solid var(--brand-border);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 20px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s, width 0.3s;
+  }
+
+  .dotActive {
+    background: var(--brand-red);
+    width: 20px;
+    border-radius: 3px;
+  }
+}
+
+/* Verification link */
+.verifyArea {
+  margin-top: -6px;
+  margin-bottom: 2px;
+}
+
+.verifyLink {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--brand-red);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.verifyLink:hover {
+  color: #fff;
+}
+
+/* Video Section */
+.videoSection {
+  margin-top: 80px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 60px;
+}
+
+.videoTitle {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.videoCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.videoThumbWrap {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.videoThumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.videoCard:hover .videoThumb {
+  transform: scale(1.05);
+}
+
+.playBtn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 8, 8, 0.45);
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+.playBtn svg {
+  width: 46px;
+  height: 46px;
+  background: rgba(8, 8, 8, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 13px;
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.videoCard:hover .playBtn {
+  background: rgba(225, 6, 0, 0.25);
+}
+
+.videoCard:hover .playBtn svg {
+  transform: scale(1.1);
+  background: var(--brand-red);
+  border-color: var(--brand-red);
+}
+
+.duration {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(8, 8, 8, 0.85);
+  backdrop-filter: blur(4px);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  font-family: monospace;
+}
+
+.videoCardTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.45;
+  transition: color 0.2s;
+}
+
+.videoCard:hover .videoCardTitle {
+  color: var(--brand-red);
+}
+
+.videoLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--brand-red);
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 900px) {
+  .videoGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .videoGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
