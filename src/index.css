@@ -188,11 +188,12 @@ img { max-width: 100%; display: block; }
 
 /* --- Section Wrapper --- */
 .section-wrap {
-  padding: 100px 24px;
+  padding: 80px 24px;
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
   z-index: 10;
+  border-top: 1px solid var(--brand-border);
 }
 
 /* --- Divider --- */
@@ -260,11 +261,6 @@ img { max-width: 100%; display: block; }
   100% { background-position: 200% center; }
 }
 
-/* --- Ticker scroll --- */
-@keyframes tickerScroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
 
 /* --- Glow ring --- */
 .glow-ring {
@@ -273,6 +269,8 @@ img { max-width: 100%; display: block; }
 
 /* --- Responsive helpers --- */
 @media (max-width: 768px) {
-  .section-wrap { padding: 72px 20px; }
+  .section-wrap {
+    padding: 48px 20px;
+  }
   .btn-primary, .btn-secondary { width: 100%; padding: 15px 24px; }
 }

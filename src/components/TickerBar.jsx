@@ -16,7 +16,32 @@ const initialTickers = [
   { pair: 'BTC/USD', price: 67421.00, change: 1.24, decimals: 0 },
 ]
 
-const TickerItem = ({ pair, price, change, decimals }) => {
+const TickerItem = ({ pair, initialPrice, initialChange, decimals }) => {
+  const [price, setPrice] = useState(initialPrice)
+  const [change, setChange] = useState(initialChange)
+
+  useEffect(() => {
+    // Each item fluctuates at its own random offset to make it look realistic
+    const intervalTime = 1500 + Math.random() * 2000
+    const interval = setInterval(() => {
+      let fluctuation = 0
+      if (decimals === 5) {
+        fluctuation = (Math.random() - 0.5) * 0.00018
+      } else if (decimals === 3) {
+        fluctuation = (Math.random() - 0.5) * 0.03
+      } else if (decimals === 2) {
+        fluctuation = (Math.random() - 0.5) * 0.9
+      } else {
+        fluctuation = (Math.random() - 0.5) * 25
+      }
+
+      setPrice((prev) => Math.max(0.00001, prev + fluctuation))
+      setChange((prev) => prev + (Math.random() - 0.5) * 0.03)
+    }, intervalTime)
+
+    return () => clearInterval(interval)
+  }, [decimals])
+
   const isUp = change >= 0
   const formattedPrice = price.toLocaleString('en-US', {
     minimumFractionDigits: decimals,
@@ -37,47 +62,7 @@ const TickerItem = ({ pair, price, change, decimals }) => {
 }
 
 export default function TickerBar() {
-  const [data, setData] = useState(initialTickers)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setData((prevData) => {
-        // Randomly choose 2-3 pairs to update
-        const countToUpdate = Math.floor(Math.random() * 3) + 1
-        const updated = [...prevData]
-        
-        for (let i = 0; i < countToUpdate; i++) {
-          const indexToUpdate = Math.floor(Math.random() * updated.length)
-          const item = { ...updated[indexToUpdate] }
-          
-          // Calculate realistic small fluctuation based on decimal scale
-          let fluctuation = 0
-          if (item.decimals === 5) {
-            fluctuation = (Math.random() - 0.5) * 0.00015
-          } else if (item.decimals === 3) {
-            fluctuation = (Math.random() - 0.5) * 0.025
-          } else if (item.decimals === 2) {
-            fluctuation = (Math.random() - 0.5) * 0.8
-          } else {
-            fluctuation = (Math.random() - 0.5) * 20
-          }
-          
-          // Update price and change percentage slightly
-          item.price = Math.max(0.00001, item.price + fluctuation)
-          const changeShift = (Math.random() - 0.5) * 0.02
-          item.change = item.change + changeShift
-          
-          updated[indexToUpdate] = item
-        }
-        
-        return updated
-      })
-    }, 1500)
-
-    return () => clearInterval(interval)
-  }, [])
-
-  const doubled = [...data, ...data]
+  const doubled = [...initialTickers, ...initialTickers]
 
   return (
     <div className={styles.ticker}>
@@ -88,8 +73,8 @@ export default function TickerBar() {
             <TickerItem
               key={`${t.pair}-${i}`}
               pair={t.pair}
-              price={t.price}
-              change={t.change}
+              initialPrice={t.price}
+              initialChange={t.change}
               decimals={t.decimals}
             />
           ))}
@@ -98,3 +83,4 @@ export default function TickerBar() {
     </div>
   )
 }
+

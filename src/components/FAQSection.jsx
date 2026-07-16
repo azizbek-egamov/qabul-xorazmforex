@@ -44,51 +44,48 @@ export default function FAQSection() {
 
   return (
     <section id="faq" className="section-wrap">
-      <hr className="section-divider" style={{ marginBottom: 0, marginLeft: -28, marginRight: -28, maxWidth: 'none' }} />
-      <div style={{ paddingTop: 100 }}>
-        <div className={styles.header}>
-          <span className="section-label">Savollaringiz bormi?</span>
-          <h2 className="section-title">Ko'p beriladigan savollar</h2>
-        </div>
+      <div className={styles.header}>
+        <span className="section-label">Savollaringiz bormi?</span>
+        <h2 className="section-title">Ko'p beriladigan savollar</h2>
+      </div>
 
-        <div ref={ref} className={styles.list}>
-          {faqs.map((faq, i) => (
-            <motion.div
-              key={i}
-              className={`${styles.item} ${open === i ? styles.itemOpen : ''}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.45, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+      <div ref={ref} className={styles.list}>
+        {faqs.map((faq, i) => (
+          <motion.div
+            key={i}
+            className={`${styles.item} ${open === i ? styles.itemOpen : ''}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.45, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <button
+              className={styles.question}
+              onClick={() => setOpen(open === i ? null : i)}
             >
-              <button
-                className={styles.question}
-                onClick={() => setOpen(open === i ? null : i)}
+              <span>{faq.q}</span>
+              <motion.span
+                className={styles.arrow}
+                animate={{ rotate: open === i ? 45 : 0 }}
+                transition={{ duration: 0.25 }}
               >
-                <span>{faq.q}</span>
-                <motion.span
-                  className={styles.arrow}
-                  animate={{ rotate: open === i ? 45 : 0 }}
-                  transition={{ duration: 0.25 }}
+                +
+              </motion.span>
+            </button>
+            <AnimatePresence>
+              {open === i && (
+                <motion.div
+                  className={styles.answer}
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  +
-                </motion.span>
-              </button>
-              <AnimatePresence>
-                {open === i && (
-                  <motion.div
-                    className={styles.answer}
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <p>{faq.a}</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
-        </div>
+                  <p>{faq.a}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        ))}
       </div>
     </section>
   )

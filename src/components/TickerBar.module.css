@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  touch-action: pan-y;
 }
 
 .label {
@@ -65,8 +66,10 @@
   width: max-content;
 }
 
-.scroll:hover {
-  animation-play-state: paused;
+@media (hover: hover) {
+  .scroll:hover {
+    animation-play-state: paused;
+  }
 }
 
 .item {
@@ -104,4 +107,9 @@
 .dot {
   color: rgba(255, 255, 255, 0.15);
   font-size: 12px;
+}
+
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }

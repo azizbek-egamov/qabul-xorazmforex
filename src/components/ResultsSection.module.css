@@ -123,61 +123,44 @@
   line-height: 1.6;
 }
 
-/* Mobile carousel */
-.carousel { display: none; }
-
 @media (max-width: 900px) {
   .grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* Mobile native swiping */
 @media (max-width: 640px) {
-  .grid { display: none; }
-  .carousel { display: block; overflow: hidden; position: relative; }
-  .note { text-align: left; max-width: 100%; }
-  .topRow { align-items: flex-start; }
-
-  .carouselTrack {
-    display: flex;
-    gap: 16px;
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: transform;
+  .grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    gap: 16px !important;
+    padding: 10px 20px 24px !important;
+    margin: 0 -20px !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  .grid::-webkit-scrollbar {
+    display: none !important;
   }
 
-  .carouselCard {
-    min-width: 100%;
-    background: var(--brand-card);
-    border: 1px solid var(--brand-border);
-    border-radius: 20px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+  .card {
+    min-width: 84% !important;
+    max-width: 84% !important;
+    scroll-snap-align: center !important;
   }
 
-  .dots {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin-top: 20px;
+  .note {
+    text-align: left !important;
+    max-width: 100% !important;
   }
 
-  .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    transition: background 0.3s, width 0.3s;
-  }
-
-  .dotActive {
-    background: var(--brand-red);
-    width: 20px;
-    border-radius: 3px;
+  .topRow {
+    align-items: flex-start !important;
+    margin-bottom: 32px !important;
   }
 }
+
 
 /* Verification link */
 .verifyArea {

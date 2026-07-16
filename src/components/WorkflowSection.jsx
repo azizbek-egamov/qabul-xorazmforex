@@ -47,47 +47,44 @@ export default function WorkflowSection() {
 
   return (
     <section id="workflow" className="section-wrap">
-      <hr className="section-divider" style={{ marginBottom: 0, marginLeft: -28, marginRight: -28, maxWidth: 'none' }} />
-      <div style={{ paddingTop: 100 }}>
-        <div className={styles.header}>
-          <span className="section-label">Muvaffaqiyat Tizimi</span>
-          <h2 className="section-title">O'qish jarayoni qanday ishlaydi?</h2>
-          <p className={styles.subtitle}>
-            Ro'yxatdan o'tishdan boshlab real dollar daromadiga chiqishgacha bo'lgan yo'l.
-          </p>
+      <div className={styles.header}>
+        <span className="section-label">Muvaffaqiyat Tizimi</span>
+        <h2 className="section-title">O'qish jarayoni qanday ishlaydi?</h2>
+        <p className={styles.subtitle}>
+          Ro'yxatdan o'tishdan boshlab real dollar daromadiga chiqishgacha bo'lgan yo'l.
+        </p>
+      </div>
+
+      <div ref={ref} className={styles.steps}>
+        {/* Vertical line */}
+        <div className={styles.line}>
+          <motion.div
+            className={styles.lineProgress}
+            initial={{ scaleY: 0 }}
+            animate={isInView ? { scaleY: 1 } : {}}
+            transition={{ duration: 1.5, delay: 0.3, ease: 'easeInOut' }}
+          />
         </div>
 
-        <div ref={ref} className={styles.steps}>
-          {/* Vertical line */}
-          <div className={styles.line}>
-            <motion.div
-              className={styles.lineProgress}
-              initial={{ scaleY: 0 }}
-              animate={isInView ? { scaleY: 1 } : {}}
-              transition={{ duration: 1.5, delay: 0.3, ease: 'easeInOut' }}
-            />
-          </div>
-
-          {steps.map((step, i) => (
-            <motion.div
-              key={step.num}
-              className={styles.step}
-              initial={{ opacity: 0, x: -30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.55, delay: 0.2 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className={`${styles.num} ${step.color === 'red' ? styles.numRed : step.color === 'green' ? styles.numGreen : ''}`}>
-                {step.num}
-              </div>
-              <div className={styles.content}>
-                <h3 className={`${styles.title} ${step.color === 'green' ? styles.titleGreen : ''}`}>
-                  {step.title}
-                </h3>
-                <p className={styles.desc}>{step.desc}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {steps.map((step, i) => (
+          <motion.div
+            key={step.num}
+            className={styles.step}
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.55, delay: 0.2 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className={`${styles.num} ${step.color === 'red' ? styles.numRed : step.color === 'green' ? styles.numGreen : ''}`}>
+              {step.num}
+            </div>
+            <div className={styles.content}>
+              <h3 className={`${styles.title} ${step.color === 'green' ? styles.titleGreen : ''}`}>
+                {step.title}
+              </h3>
+              <p className={styles.desc}>{step.desc}</p>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   )

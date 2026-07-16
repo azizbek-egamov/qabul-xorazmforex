@@ -29,37 +29,34 @@ export default function WhyUsSection() {
 
   return (
     <section id="why-us" className="section-wrap">
-      <hr className="section-divider" style={{ marginBottom: 0, marginLeft: -28, marginRight: -28, maxWidth: 'none' }} />
-      <div style={{ paddingTop: 100 }}>
-        <div className={styles.header}>
-          <span className="section-label">Nega aynan biz?</span>
-          <h2 className="section-title">Sizga eng kerakli ustunliklar</h2>
-          <p className={styles.subtitle}>Bozorda shunchaki nazariya emas, aniq natija beradigan tizim bilan ishlang.</p>
-        </div>
-
-        <motion.div
-          ref={ref}
-          className={styles.grid}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? 'show' : 'hidden'}
-        >
-          {items.map((item) => (
-            <motion.div key={item.title} className={styles.card} variants={itemVariants}>
-              <div className={styles.iconWrap}>
-                {item.num ? (
-                  <span className={styles.iconNum}>{item.num}</span>
-                ) : (
-                  <span className={styles.iconEmoji}>{item.icon}</span>
-                )}
-              </div>
-              <h3 className={styles.cardTitle}>{item.title}</h3>
-              <p className={styles.cardDesc}>{item.desc}</p>
-              <div className={styles.cardLine} />
-            </motion.div>
-          ))}
-        </motion.div>
+      <div className={styles.header}>
+        <span className="section-label">Nega aynan biz?</span>
+        <h2 className="section-title">Sizga eng kerakli ustunliklar</h2>
+        <p className={styles.subtitle}>Bozorda shunchaki nazariya emas, aniq natija beradigan tizim bilan ishlang.</p>
       </div>
+
+      <motion.div
+        ref={ref}
+        className={styles.grid}
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? 'show' : 'hidden'}
+      >
+        {items.map((item) => (
+          <motion.div key={item.title} className={styles.card} variants={itemVariants}>
+            <div className={styles.iconWrap}>
+              {item.num ? (
+                <span className={styles.iconNum}>{item.num}</span>
+              ) : (
+                <span className={styles.iconEmoji}>{item.icon}</span>
+              )}
+            </div>
+            <h3 className={styles.cardTitle}>{item.title}</h3>
+            <p className={styles.cardDesc}>{item.desc}</p>
+            <div className={styles.cardLine} />
+          </motion.div>
+        ))}
+      </motion.div>
     </section>
   )
 }
