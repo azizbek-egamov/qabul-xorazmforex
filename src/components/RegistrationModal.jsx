@@ -11,6 +11,40 @@ const courses = [
 
 const regions = ['Xorazm', 'Toshkent', 'Buxoro', 'Samarqand', 'Qashqadaryo', 'Surxondaryo', 'Namangan', 'Andijon', 'Farg\'ona', 'Jizzax', 'Sirdaryo', 'Navoiy', "Qoraqalpog'iston", 'Boshqa viloyat']
 
+const formatPhoneNumber = (value) => {
+  const digits = value.replace(/\D/g, '')
+  if (digits.length === 0) return '+998'
+  
+  let rest = ''
+  if (digits.startsWith('998')) {
+    rest = digits.substring(3)
+  } else {
+    rest = digits
+  }
+  
+  rest = rest.substring(0, 9)
+  
+  let formatted = '+998'
+  if (rest.length > 0) {
+    formatted += ` (${rest.substring(0, 2)}`
+  }
+  if (rest.length > 2) {
+    formatted += `) ${rest.substring(2, 5)}`
+  }
+  if (rest.length > 5) {
+    formatted += `-${rest.substring(5, 7)}`
+  }
+  if (rest.length > 7) {
+    formatted += `-${rest.substring(7, 9)}`
+  }
+  return formatted
+}
+
+const formatAge = (value) => {
+  const digits = value.replace(/\D/g, '')
+  return digits.substring(0, 2)
+}
+
 export default function RegistrationModal({ isOpen, onClose, selectedCourse, setSelectedCourse }) {
   const [submitted, setSubmitted] = useState(false)
   const [form, setForm] = useState({
@@ -22,11 +56,50 @@ export default function RegistrationModal({ isOpen, onClose, selectedCourse, set
   })
 
   const handleChange = (e) => {
-    setForm(f => ({ ...f, [e.target.name]: e.target.value }))
+    const { name, value } = e.target
+    if (name === 'phone') {
+      setForm(f => ({ ...f, phone: formatPhoneNumber(value) }))
+    } else if (name === 'age') {
+      setForm(f => ({ ...f, age: formatAge(value) }))
+    } else {
+      setForm(f => ({ ...f, [name]: value }))
+    }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+
+    const botToken = import.meta.env.VITE_BOT_TOKEN
+    const channelId = import.meta.env.VITE_CHANNEL_ID
+
+    const text = `
+🔔 <b>YANGI ARIZA QABUL QILINDI!</b>
+
+👤 <b>Ism:</b> ${form.name}
+📞 <b>Telefon:</b> ${form.phone}
+🎂 <b>Yosh:</b> ${form.age} yosh
+📍 <b>Viloyat:</b> ${form.region}
+📚 <b>Kurs:</b> ${courses.find(c => c.value === form.course)?.label || form.course}
+    `.trim()
+
+    try {
+      if (botToken && channelId) {
+        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            chat_id: channelId,
+            text: text,
+            parse_mode: 'HTML'
+          })
+        })
+      }
+    } catch (error) {
+      console.error('Telegram bot submit error:', error)
+    }
+
     setSubmitted(true)
   }
 
@@ -100,6 +173,7 @@ export default function RegistrationModal({ isOpen, onClose, selectedCourse, set
                         <input
                           type="tel"
                           name="phone"
+                          placeholder="+998 (97) 560-06-00"
                           required
                           className={styles.input}
                           value={form.phone}
@@ -109,11 +183,10 @@ export default function RegistrationModal({ isOpen, onClose, selectedCourse, set
                       <div className={styles.field}>
                         <label className={styles.label}>Yoshingiz</label>
                         <input
-                          type="number"
+                          type="text"
+                          inputMode="numeric"
                           name="age"
-                          placeholder="Yoshingiz"
-                          min="15"
-                          max="70"
+                          placeholder="Masalan: 22"
                           required
                           className={styles.input}
                           value={form.age}
