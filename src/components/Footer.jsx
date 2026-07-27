@@ -35,7 +35,7 @@ export default function Footer({ onRegister }) {
             <div className={styles.brandTag}>Est. 2005 • Urganch, O'zbekiston</div>
             <p className={styles.brandDesc}>
               O'zbekistondagi yetakchi professional Forex Trading Akademiyasi.
-              2005-yildan buyon 1000+ mutaxassis tarbiyalab kelmoqdamiz.
+              2005-yildan buyon 2000+ mutaxassis tarbiyalab kelmoqdamiz.
             </p>
           </div>
 

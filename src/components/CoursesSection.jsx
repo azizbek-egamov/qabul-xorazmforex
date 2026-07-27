@@ -25,8 +25,8 @@ const courses = [
     sub: "Oflayn ta'lim + Katta bonus",
     price: '3 000 000',
     currency: "so'm",
-    oldPrice: '6 000 000',
-    ageNote: "25 yoshdan yuqori: 4 000 000 so'm",
+    oldPrice: null,
+    ageNote: "25 yoshdan kattalarga: 4 000 000 so'm",
     hot: true,
     hotLabel: "ENG KO'P TANLANGAN 🔥",
     features: [
@@ -42,8 +42,8 @@ const courses = [
     id: 'pro',
     label: 'PRO COACHING',
     sub: "Shaxsiy individual yondashuv",
-    price: '5 000 000',
-    currency: "so'm",
+    price: '37 500 000',
+    currency: "UZS",
     oldPrice: null,
     hot: false,
     features: [
@@ -126,46 +126,6 @@ export default function CoursesSection({ onRegister }) {
             </button>
           </motion.div>
         ))}
-      </motion.div>
-
-      {/* Tariflar Taqqoslovi (Comparison Table) */}
-      <motion.div
-        className={styles.comparisonSection}
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: 0.4 }}
-      >
-        <h3 className={styles.compTitle}>Tariflar taqqoslovi</h3>
-        <div className={styles.tableScroll}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>Imkoniyatlar</th>
-                <th>ONLINE ELITE</th>
-                <th className={styles.highlightHeader}>START KURSI</th>
-                <th>PRO COACHING</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { name: "$5,000 Real Kapital", online: "✗", start: "✓ $5,000", pro: "✓ $10,000+", highlight: true },
-                { name: "O'qish shakli", online: "Masofaviy (Online)", start: "Oflayn (Urganch)", pro: "Shaxsiy Oflayn (Urganch)" },
-                { name: "Mentor yordami", online: "Haftalik online", start: "Yuzma-yuz darslar", pro: "VIP 1-ga-1 cheksiz" },
-                { name: "Jonli amaliyot", online: "✓", start: "✓ (Ofisda)", pro: "✓ (Shaxsiy bitimlar)" },
-                { name: "Yopiq guruhga kirish", online: "✓ (1 oy)", start: "✓ (Umrbod)", pro: "✓ (Umrbod VIP)" },
-                { name: "Premium Sertifikat", online: "✓", start: "✓", pro: "✓" },
-                { name: "Qo'llab-quvvatlash", online: "3 oy", start: "6 oy", pro: "Cheksiz (Umrbod)" },
-              ].map((row, idx) => (
-                <tr key={idx} className={row.highlight ? styles.highlightRow : ''}>
-                  <td className={styles.featureName}>{row.name}</td>
-                  <td className={row.online === '✗' ? styles.cross : styles.check}>{row.online}</td>
-                  <td className={`${styles.check} ${styles.highlightCol}`}>{row.start}</td>
-                  <td className={styles.check}>{row.pro}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
       </motion.div>
 
       {/* Bottom note */}

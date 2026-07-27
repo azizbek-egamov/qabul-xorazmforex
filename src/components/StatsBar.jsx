@@ -36,8 +36,8 @@ const StatItem = ({ num, suffix, label, isVisible }) => {
 
 const stats = [
   { num: 2005, suffix: '', label: 'Yildan buyon faoliyat' },
-  { num: 1000, suffix: '+', label: "Mamnun o'quvchi" },
-  { num: 500, suffix: '+', label: 'Funded Trader' },
+  { num: 2000, suffix: '+', label: "Mamnun o'quvchilar" },
+  { num: 500, suffix: '+', label: 'Aktiv treyderlar' },
   { num: 5, suffix: '★', label: 'Reyting (Google & Telegram)' },
 ]
 

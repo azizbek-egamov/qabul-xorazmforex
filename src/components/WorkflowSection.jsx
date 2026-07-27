@@ -5,38 +5,32 @@ import styles from './WorkflowSection.module.css'
 const steps = [
   {
     num: '01',
-    title: "Ro'yxatdan o'tasiz",
-    desc: "Saytda ariza qoldirasiz, mutaxassislarimiz sizga mos formatni tasdiqlashadi.",
+    title: 'Qabulga yozilish',
+    desc: "Qabulga yozilasiz, ofisga kelasiz va shartnoma tuzasiz.",
     color: 'red',
   },
   {
     num: '02',
-    title: 'Dars boshlanadi',
-    desc: "Eng sodda va tushunarli tilda tuzilgan professional darsliklar boshlanadi.",
+    title: 'Ta’lim jarayoni',
+    desc: "Darslar boshlanadi, 6 modul asosida 1 oy davomida ta'lim olasiz.",
     color: 'default',
   },
   {
     num: '03',
-    title: 'Real amaliyot',
-    desc: "Mentorlar bilan birgalikda jonli bozor holatida bitimlar ochib tajriba yig'asiz.",
+    title: 'Amaliy savdo',
+    desc: "Amaliyot uchun berilgan maxsus hisoblarda real savdolar qilasiz.",
     color: 'default',
   },
   {
     num: '04',
-    title: 'Challenge topshirasiz',
-    desc: "Akademiyada olingan bilimlar yordamida maxsus test sinovlaridan oson o'tasiz.",
+    title: 'Sertifikat olish',
+    desc: "O'quv dasturini muvaffaqiyatli tugatib, sertifikat olasiz.",
     color: 'default',
   },
   {
     num: '05',
-    title: 'Funded hisob olasiz',
-    desc: "Savdo qilish uchun yirik investorlarning haqiqiy kapital boshqaruvini qo'lga kiritasiz.",
-    color: 'default',
-  },
-  {
-    num: '06',
-    title: 'Daromad ishlaysiz',
-    desc: "Topgan sof foydangizning katta qismini har oy o'z bank kartangizga yechib olasiz.",
+    title: 'Mustaqil faoliyat',
+    desc: "Treyderlik faoliyatingizni mustaqil ravishda ishonch bilan boshlay olasiz.",
     color: 'green',
   },
 ]
