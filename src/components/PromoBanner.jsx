@@ -100,10 +100,10 @@ export default function PromoBanner({ onRegister }) {
             <div className={styles.priceNew}>
               <div className={styles.priceMainRow}>
                 <span className={styles.priceNewVal}>3 000 000 so'm</span>
-                <span className={styles.priceAgeLabel}>Talabalar va 25 yoshgacha bo'lganlar uchun</span>
+                <span className={styles.priceAgeLabel}>START ONLAYN kursiga</span>
               </div>
               <div className={styles.priceExtra}>
-                *25 yoshdan kattalarga 4 000 000 so'm (maxsus yengilliklar mavjud)
+                *START OFFLINE — 6 000 000 so'm (maxsus yengilliklar mavjud)
               </div>
             </div>
           </motion.div>

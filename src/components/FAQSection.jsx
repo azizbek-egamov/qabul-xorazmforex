@@ -17,7 +17,7 @@ const faqs = [
   },
   {
     q: '25 yoshgacha chegirma qanday ishlaydi?',
-    a: '25 yoshgacha bo\'lganlar START kursini 3 000 000 so\'mga olishadi. 25 yoshdan kattalar uchun narx 4 000 000 so\'m. Ikkala holda ham $5,000 prop kapital sovg\'a beriladi.',
+    a: 'START OFFLINE kursini 6 000 000 so\'m bilan olishingiz mumkin. START ONLAYN kursni esa 3 000 000 so\'m narxda olishingiz mumkin. Ikkala holda ham mentorlik yordami va sertifikat beriladi.',
   },
   {
     q: 'Offline va Online formatning farqi nima?',

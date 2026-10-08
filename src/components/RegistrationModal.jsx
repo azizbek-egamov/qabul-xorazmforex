@@ -3,10 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import styles from './RegistrationModal.module.css'
 
 const courses = [
-  { value: 'start-u25', label: 'START — 25 yoshgacha (3 000 000 so\'m)' },
-  { value: 'start-o25', label: 'START — 25 yoshdan yuqori (4 000 000 so\'m)' },
-  { value: 'pro', label: 'PRO COACHING (5 000 000 so\'m)' },
-  { value: 'online', label: 'ONLINE ELITE (2 500 000 so\'m)' },
+  { value: 'start-offline', label: 'START OFFLINE (6 000 000 so\'m)' },
+  { value: 'zeta', label: 'ZETA (15 000 000 so\'m)' },
+  { value: 'start-online', label: 'START ONLAYN (3 000 000 so\'m)' },
+  { value: 'individual-sardor', label: 'INDIVIDUAL SARDOR VAISOV (10 000 000 so\'m)' },
+  { value: 'pro-individual', label: 'PRO INDIVIDUAL (37 500 000 so\'m)' },
+  { value: 'prop', label: 'PROP KURS (BEPUL)' },
 ]
 
 const regions = ['Xorazm', 'Toshkent', 'Buxoro', 'Samarqand', 'Qashqadaryo', 'Surxondaryo', 'Namangan', 'Andijon', 'Farg\'ona', 'Jizzax', 'Sirdaryo', 'Navoiy', "Qoraqalpog'iston", 'Boshqa viloyat']
@@ -52,7 +54,7 @@ export default function RegistrationModal({ isOpen, onClose, selectedCourse, set
     phone: '+998',
     age: '',
     region: 'Xorazm',
-    course: selectedCourse === 'start' ? 'start-u25' : selectedCourse === 'pro' ? 'pro' : 'online',
+    course: selectedCourse === 'start-offline' ? 'start-offline' : selectedCourse === 'pro-individual' ? 'pro-individual' : 'start-online',
   })
 
   const handleChange = (e) => {
